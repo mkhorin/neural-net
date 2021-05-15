@@ -12,5 +12,5 @@ module.exports = {
             }
         }
     },
-    users: require('../../neural/config/demo-users')
+    users: require('demo-users')
 };
