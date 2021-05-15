@@ -61,7 +61,7 @@ Front.Form = class Form extends Front.Element {
     }
 
     hasError () {
-        return this.find('.has-error').length > 0;
+        return this.findErrors().length > 0;
     }
 
     addTopError (message) {
@@ -90,8 +90,12 @@ Front.Form = class Form extends Front.Element {
     }
 
     clearErrors () {
-        this.find('.has-error').removeClass('has-error');
+        this.findErrors().removeClass('has-error');
         this.find('.has-group-error').removeClass('has-group-error');
+    }
+
+    findErrors () {
+        return this.find('.has-error');
     }
 
     setErrors (data) {
@@ -101,6 +105,10 @@ Front.Form = class Form extends Front.Element {
                 this.addError(key, data[key]);
             }
         }
+    }
+
+    scrollToError () {
+        Jam.Helper.scrollTo(this.findErrors().first());
     }
 
     serialize () {
@@ -122,7 +130,7 @@ Front.Form = class Form extends Front.Element {
         this.clearErrors();
         this.forEachAttr(this.validateAttr, this);
         this.getValidators().forEach(config => new config.Class(config).validate(this));
-        return !this.find('.has-error').length;
+        return !this.findErrors().length;
     }
 
     validateAttr ($attr, $value, name) {

@@ -3,4 +3,11 @@
  */
 Front.TrainingForm = class TrainingForm extends Front.Form {
 
+    validate () {
+        if (super.validate(...arguments)) {
+            return true;
+        }
+        this.scrollToError();
+        return false;
+    }
 };
