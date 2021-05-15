@@ -51,8 +51,8 @@ Front.RecognitionPage = class RecognitionPage extends Front.Page {
         $.when(this.networkSelectionForm.getNetwork()).then(network => {
             const outputs = this.recognize(data, network);
             this.recognitionResult.setValues(outputs);
-            this.recognitionResult.maxValue > .5
-                ? this.splash.setValue(this.recognitionResult.maxIndex)
+            this.recognitionResult.activeValue
+                ? this.splash.setValue(this.recognitionResult.activeNum)
                 : this.splash.toggleFail(true);
             this.splash.show();
         });

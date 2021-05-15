@@ -198,6 +198,11 @@ body {
     display: flex;
     align-items: center;
 }
+@media (max-width: 768px) {
+    .drawing {
+        padding-right: 1rem;
+    }
+}
 
 /* SPLASH */
 
