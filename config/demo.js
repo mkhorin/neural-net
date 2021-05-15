@@ -12,5 +12,5 @@ module.exports = {
             }
         }
     },
-    users: require('demo-users')
+    users: require('./demo-users')
 };
