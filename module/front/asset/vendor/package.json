@@ -1,0 +1,11 @@
+{
+  "name": "neural-net-vendors",
+  "version": "1.0.0",
+  "description": "Neural network vendors",
+  "author": "Maxim Khorin",
+  "license": "Apache-2.0",
+  "repository": {},
+  "dependencies": {
+    "@zip.js/zip.js": "^2.2.28"
+  }
+}

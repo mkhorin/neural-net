@@ -1,0 +1,33 @@
+<!-- _part/networkSelection -->
+
+<fieldset class="form-group" data-handler="NetworkSelectionForm">
+
+    <div class="form-error alert-danger alert"></div>
+
+    <div class="form-attr form-group" data-handler="FormNetworkSelect" data-storage="remoteNetworkStorage">
+        <label class="col-form-label" data-t="">Remotely stored neural networks</label>
+        <div class="input-group">
+            <select class="form-select" name="remoteNetwork">
+                <option></option>
+            </select>
+            <% if (!isGuest) { %>
+            <button type="button" class="btn-outline-danger btn" data-command="deleteRemotely">
+                <i class="far fa-trash-alt"></i>
+            </button>
+            <% } %>
+        </div>
+        <div class="error-block"></div>
+    </div>
+    <div class="form-attr form-group" data-handler="FormNetworkSelect" data-storage="localNetworkStorage">
+        <label class="col-form-label" data-t="">Locally stored neural networks</label>
+        <div class="input-group">
+            <select class="form-select" name="localNetwork">
+                <option></option>
+            </select>
+            <button type="button" class="btn-outline-danger btn" data-command="deleteLocally">
+                <i class="far fa-trash-alt"></i>
+            </button>
+        </div>
+        <div class="error-block"></div>
+    </div>
+</fieldset>
