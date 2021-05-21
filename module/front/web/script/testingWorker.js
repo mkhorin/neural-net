@@ -24,12 +24,13 @@ class Front {
             log: `Test iteration: 1`
         });
         let counter = 0, matches = 0;
+        let errors = Array(10).fill(0);
         for (let [value, data] of this.inputs) {
             this.network.processInputs(data);
             let active = this.network.getActiveNeuron();
-            if (active?.index === value) {
-                ++matches;
-            }
+            active?.index === value
+                ? ++matches
+                : ++errors[value];
             if (++counter % this.progressStep === 0) {
                 postMessage({
                     progress: counter * 100 / this.inputs.length
@@ -38,7 +39,8 @@ class Front {
         }
         return {
             inputs: this.inputs.length,
-            matches
+            matches,
+            errors
         };
     }
 }

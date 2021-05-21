@@ -366,3 +366,6 @@ body {
 .page-testing.testing [data-command="stop"] {
     display: block;
 }
+.test-info {
+    margin: .7rem 0 .35rem;
+}

@@ -9,7 +9,6 @@ Front.Neuron = class Neuron {
         this.minInitialWeight = params.minInitialWeight;
         this.maxInitialWeight = params.maxInitialWeight;
         this.weights = [];
-
     }
 
     createSynapses (size) {

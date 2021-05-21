@@ -2,7 +2,7 @@
 
 Object.assign(Jam.I18n.defaults, {
 
-    '({errors} errors per {inputs} test digits)': '(из {inputs} тестовых цифр ошибок - {errors})',
+    '{errors} errors per {inputs} test digits:': 'Из {inputs} тестовых цифр ошибок - {errors}:',
 
     'A selected neural network will try to determine the drawn value.': 'Выбранная нейронная сеть попытается определить нарисованное значение.',
     'At each iteration, the data is shuffled and passed through the network.': 'На каждой итерации данные случайно перемешиваются и проходят через сеть.',
@@ -12,6 +12,7 @@ Object.assign(Jam.I18n.defaults, {
     'Erase': 'Стереть',
 
     'Delete this neural network permanently?': 'Удалить данную нейронную сеть безвозвратно?',
+    'Digit': 'Цифра',
     'Draw a number from 0 to 9': 'Нарисуйте число от 0 до 9',
 
     'Draw a number on the area below and click "Recognize".': 'Нарисуйте цифру в области ниже и нажмите "Распознать".',

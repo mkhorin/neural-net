@@ -44,9 +44,14 @@
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar"></div>
                     </div>
                     <div class="alert-test alert-warning alert">
-                        <span data-t="">Result</span> -
-                        <b class="test-result"></b>
-                        <span class="test-info"></span>
+                        <span data-t="">Result</span> - <b class="test-result"></b>
+                        <div class="test-info"></div>
+                        <div class="test-errors"></div>
+                        <template data-id="digitError">
+                            <div class="digit-error">
+                                <span data-t="">Digit</span> {{digit}} - <b>{{counter}}</b>
+                            </div>
+                        </template>
                     </div>
                     <div class="text-center">
                         <button class="m-auto btn-success btn" type="button" data-command="start">

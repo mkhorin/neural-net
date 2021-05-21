@@ -69,13 +69,21 @@ Front.TestingPage = class TestingPage extends Front.Page {
         });
     }
 
-    onCompleteTesting ({inputs, matches}) {
+    onCompleteTesting ({inputs, matches, errors}) {
         const percent = matches * 100 / inputs;
         this.find('.test-result').html(`${percent}%`);
-        const errors = inputs - matches;
-        this.find('.test-info').html(Jam.t(['({errors} errors per {inputs} test digits)', {errors, inputs}]));
+        Jam.t(this.find('.test-errors').html(this.renderErrors(errors)));
+        errors = inputs - matches;
+        this.find('.test-info').html(Jam.t(['{errors} errors per {inputs} test digits:', {errors, inputs}]));
         this.networkSelectionForm.toggleDisabled(false);
         this.toggleCompleted(true);
+    }
+
+    renderErrors (errors) {
+        const template = this.getTemplate('digitError');
+        errors = errors.filter(counter => counter);
+        errors = errors.map((counter, digit) => Jam.Helper.resolveTemplate(template, {digit, counter}));
+        return errors.join('');
     }
 
     onErrorTesting (message) {
