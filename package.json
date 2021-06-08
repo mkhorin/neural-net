@@ -1,6 +1,6 @@
 {
   "name": "neural-net",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Train, test and operate neural networks to recognize handwritten digits",
   "author": "Maxim Khorin",
   "license": "MIT",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "adm-zip": "~0.5.5",
-    "evado": "~3.1.0",
+    "evado": "~4.0.0",
     "evado-module-account": "~3.0.0",
-    "evado-module-admin": "~3.1.0",
+    "evado-module-admin": "~4.0.0",
     "sharp": "~0.28.0"
   },
   "scripts": {
