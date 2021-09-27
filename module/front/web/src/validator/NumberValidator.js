@@ -13,8 +13,8 @@ Front.NumberValidator = class NumberValidator extends Front.Validator {
     }
 
     validateValue (value) {
-        const number = parseFloat(value);
-        if (isNaN(number) || String(number).length !== String(value).length) {
+        const number = Number(value);
+        if (isNaN(number)) {
             return 'Value must be a number';
         }
         if (this.integerOnly && !Number.isSafeInteger(number)) {
