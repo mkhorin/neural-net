@@ -1,22 +1,22 @@
 {
   "name": "neural-net",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Train, test and operate neural networks to recognize handwritten digits",
   "author": "Maxim Khorin",
   "license": "MIT",
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16.13.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mkhorin/neural-net.git"
   },
   "dependencies": {
-    "adm-zip": "~0.5.5",
-    "evado": "~4.0.0",
+    "adm-zip": "~0.5.9",
+    "evado": "~5.0.0",
     "evado-module-account": "~3.0.0",
-    "evado-module-admin": "~4.0.0",
-    "sharp": "~0.28.0"
+    "evado-module-admin": "~5.0.0",
+    "sharp": "~0.29.0"
   },
   "scripts": {
     "start": "node console/start"
