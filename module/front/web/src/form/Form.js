@@ -108,7 +108,7 @@ Front.Form = class Form extends Front.Element {
     }
 
     scrollToError () {
-        Jam.Helper.scrollTo(this.findErrors().first());
+        Jam.ScrollHelper.scrollTo(this.findErrors().first());
     }
 
     serialize () {
