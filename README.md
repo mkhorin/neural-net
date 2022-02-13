@@ -1,6 +1,6 @@
 # Neural Network App
- 
-Train, test and operate neural networks to recognize handwritten digits. 
+
+Train, test and operate neural networks to recognize handwritten digits.
 
 [![Neural Network Demo](doc/screen-01.png)](http://nervebit.com/neural-net)
 

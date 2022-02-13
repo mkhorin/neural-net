@@ -29,7 +29,7 @@ class Front {
 
     static setPageTitle (text) {
         const $title = $(document.head).find('title');
-        const base = $title.data('title');        
+        const base = $title.data('title');
         $title.html(text ? `${Jam.t(text)} - ${base}` : base);
     }
 
