@@ -2,7 +2,7 @@
 
 Train, test and operate neural networks to recognize handwritten digits.
 
-[![Neural Network Demo](doc/screen-01.png)](http://nervebit.com/neural-net)
+[![Neural Network App](doc/screen-01.png)](https://mkhorin.github.io/neural-net)
 
 ## Docker installation
 
