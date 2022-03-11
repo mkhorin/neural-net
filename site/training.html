@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Training - Neural network on JavaScript</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/highlight/styles/default.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+<div class="wrapper">
+  <nav class="navbar-target navbar navbar-inverse"></nav>
+
+  <article class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>Training neural network</h1>
+        <p>
+          Neural networks are trained directly in the browser.
+          The training data set contains several tens of thousands of handwritten digit samples mixed randomly.
+          The initial parameters you set affect the learning outcome.
+        </p>
+        <ul>
+          <li>
+            <b>Number of neurons</b>.
+            This parameter determines the number of neurons in the hidden layer.
+            The more neurons there are, the longer the network takes to learn.
+            The minimum value is 4, the maximum value is 32.
+          </li>
+          <li>
+            <b>Learning rate</b>.
+            The multiplier of changes when the training function converges to the minimum of errors.
+            The minimum value is 0.01, the maximum value is 1.
+          </li>
+          <li>
+            <b>Start error threshold</b>.
+            If the error of the random initial network state exceeds the specified value, the network will be initialized again.
+            The minimum value is 0.01, the maximum value is 1.
+          </li>
+          <li>
+            <b>Stop error threshold</b>.
+            If the difference between the errors of the training iterations is less than the specified threshold, the training is terminated.
+            The minimum value is 0.0002, the maximum value is 0.01.
+          </li>
+          <li>
+            <b>Min / max initial weight</b>.
+            Boundary values when forming the initial state of neural network connections.
+          </li>
+          <li>
+            <b>Hidden / output layer bias</b>.
+            Offset of the result of the neuron activation function.
+          </li>
+        </ul>
+        <img class="image-view" src="images/training.png" alt="Neural network training">
+        <p>
+          Trained networks can be saved either locally or remotely to the server (if you have access rights).
+          Locally stored networks are only available in the current browser.
+          Remote networks are available to all users.
+        </p>
+      </div>
+    </div>
+  </article>
+
+</div>
+<footer class="footer footer-inverse">
+  <div class="container mt20">
+    <p class="text-center">Copyright @ 2022 Maxim Khorin</p>
+  </div>
+</footer>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/highlight/highlight.pack.js"></script>
+<script src="js/common.js"></script>
+
+</body>
+</html>
