@@ -16,7 +16,7 @@
     "evado": "~5.4.0",
     "evado-module-account": "~3.0.0",
     "evado-module-admin": "~5.2.0",
-    "sharp": "~0.30.0"
+    "sharp": "~0.31.0"
   },
   "scripts": {
     "start": "node console/start"
