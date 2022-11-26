@@ -1,74 +1,74 @@
 <!-- default/_testing -->
 <div class="page-testing page" data-page="testing" data-handler="TestingPage"
-     data-data-set="<%- _module.getParam('testDataSet') %>">
+   data-data-set="<%- _module.params.testDataSet %>">
 
-    <div class="tabs-ghost tabs">
-        <div class="nav nav-tabs">
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="main">
-                <span data-t="">Main</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="recognize">
-                <span data-t="">Recognition</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="train">
-                <span data-t="">Training</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen active" href="#" role="tab" data-action="test">
-                <span data-t="">Testing</span>
-            </a>
-        </div>
+  <div class="tabs-ghost tabs">
+    <div class="nav nav-tabs">
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="main">
+        <span data-t="">Main</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="recognize">
+        <span data-t="">Recognition</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="train">
+        <span data-t="">Training</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen active" href="#" role="tab" data-action="test">
+        <span data-t="">Testing</span>
+      </a>
+    </div>
+  </div>
+
+  <h1 data-t="">Neural network testing</h1>
+
+  <p class="mb-4">
+    <span data-t="">The network efficiency is checked using test data (thousands handwritten digits), which is different from the training set.</span>
+    <br>
+    <span data-t="">The test result is the percentage of correctly defined digits.</span>
+  </p>
+
+  <div class="row">
+
+    <div class="col-lg-6 order-lg-2">
+      <%- include(_view.get('_part/networkSelection')) %>
+      <div class="mb-4"></div>
     </div>
 
-    <h1 data-t="">Neural network testing</h1>
-
-    <p class="mb-4">
-        <span data-t="">The network efficiency is checked using test data (thousands handwritten digits), which is different from the training set.</span>
-        <br>
-        <span data-t="">The test result is the percentage of correctly defined digits.</span>
-    </p>
-
-    <div class="row">
-
-        <div class="col-lg-6 order-lg-2">
-            <%- include(_view.get('_part/networkSelection')) %>
-            <div class="mb-4"></div>
+    <div class="col-lg-6 order-lg-1">
+      <div class="progress-view" data-handler="ProgressView">
+        <div class="form-attr form-group">
+          <label class="col-form-label">
+            <b data-t="">Testing progress</b>
+          </label>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"></div>
+          </div>
+          <div class="alert-test alert-warning alert">
+            <span data-t="">Result</span> - <b class="test-result"></b>
+            <div class="test-info"></div>
+            <div class="test-errors"></div>
+            <template data-id="digitError">
+              <div class="digit-error">
+                <span data-t="">Digit</span> {{digit}} - <b>{{counter}}</b>
+              </div>
+            </template>
+          </div>
+          <div class="text-center">
+            <button class="m-auto btn-success btn" type="button" data-command="start">
+              <span data-t="">Start</span>
+            </button>
+            <button class="m-auto btn-danger btn" type="button" data-command="stop">
+              <i class="me-1 fas fa-sync-alt fa-spin"></i>
+              <span data-t="">Stop testing</span>
+            </button>
+          </div>
         </div>
-
-        <div class="col-lg-6 order-lg-1">
-            <div class="progress-view" data-handler="ProgressView">
-                <div class="form-attr form-group">
-                    <label class="col-form-label">
-                        <b data-t="">Testing progress</b>
-                    </label>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"></div>
-                    </div>
-                    <div class="alert-test alert-warning alert">
-                        <span data-t="">Result</span> - <b class="test-result"></b>
-                        <div class="test-info"></div>
-                        <div class="test-errors"></div>
-                        <template data-id="digitError">
-                            <div class="digit-error">
-                                <span data-t="">Digit</span> {{digit}} - <b>{{counter}}</b>
-                            </div>
-                        </template>
-                    </div>
-                    <div class="text-center">
-                        <button class="m-auto btn-success btn" type="button" data-command="start">
-                            <span data-t="">Start</span>
-                        </button>
-                        <button class="m-auto btn-danger btn" type="button" data-command="stop">
-                            <i class="me-1 fas fa-sync-alt fa-spin"></i>
-                            <span data-t="">Stop testing</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="progress-logs" data-handler="ProgressLog">
-                <template data-id="item">
-                    <div class="progress-log">{{message}}</div>
-                </template>
-            </div>
-        </div>
+      </div>
+      <div class="progress-logs" data-handler="ProgressLog">
+        <template data-id="item">
+          <div class="progress-log">{{message}}</div>
+        </template>
+      </div>
     </div>
+  </div>
 </div>

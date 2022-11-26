@@ -1,227 +1,226 @@
 <!-- default/_training -->
-
 <div class="page-training page" data-page="training" data-handler="TrainingPage"
-     data-data-set="<%- _module.getParam('trainingDataSet') %>">
+   data-data-set="<%- _module.params.trainingDataSet %>">
 
-    <div class="tabs-ghost tabs">
-        <div class="nav nav-tabs">
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="main">
-                <span data-t="">Main</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="recognize">
-                <span data-t="">Recognition</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen active" href="#" role="tab" data-action="train">
-                <span data-t="">Training</span>
-            </a>
-            <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="test">
-                <span data-t="">Testing</span>
-            </a>
+  <div class="tabs-ghost tabs">
+    <div class="nav nav-tabs">
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="main">
+        <span data-t="">Main</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="recognize">
+        <span data-t="">Recognition</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen active" href="#" role="tab" data-action="train">
+        <span data-t="">Training</span>
+      </a>
+      <a class="nav-item nav-link nav-frozen" href="#" role="tab" data-action="test">
+        <span data-t="">Testing</span>
+      </a>
+    </div>
+  </div>
+
+  <h1 data-t="">Neural network training</h1>
+
+  <p class="mb-4">
+    <span data-t="">Neural networks are trained using an error back propagation algorithm.</span>
+    <br>
+    <span data-t="">Several tens of thousands of handwritten digits are used as training data.</span>
+    <span data-t="">At each iteration, the data is shuffled and passed through the network.</span>
+    <span data-t="">The weights of the neuronal connections are adjusted based on the result error (stochastic gradient descent is implemented).</span>
+  </p>
+
+  <fieldset class="form" data-handler="TrainingForm">
+
+    <div class="form-error alert-danger alert"></div>
+
+    <div class="form-columns form-group row">
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Number of neurons</span>
+            <i class="fas fa-question-circle"
+               title="Number of neurons in the hidden layer affects the training time"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="neurons" type="text" class="form-control" required
+                 value="10" data-min="4" data-max="32" data-integer-only="true">
+            <div class="error-block"></div>
+          </div>
         </div>
+      </div>
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Learning rate</span>
+            <i class="fas fa-question-circle"
+               title="The step size when moving to the minimum of errors"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="learningRate" type="text" class="form-control" value="0.02"
+                 data-min=".01" data-max="1" required>
+            <div class="error-block"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h1 data-t="">Neural network training</h1>
-
-    <p class="mb-4">
-        <span data-t="">Neural networks are trained using an error back propagation algorithm.</span>
-        <br>
-        <span data-t="">Several tens of thousands of handwritten digits are used as training data.</span>
-        <span data-t="">At each iteration, the data is shuffled and passed through the network.</span>
-        <span data-t="">The weights of the neuronal connections are adjusted based on the result error (stochastic gradient descent is implemented).</span>
-    </p>
-
-    <fieldset class="form" data-handler="TrainingForm">
-
-        <div class="form-error alert-danger alert"></div>
-
-        <div class="form-columns form-group row">
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Number of neurons</span>
-                        <i class="fas fa-question-circle"
-                           title="Number of neurons in the hidden layer affects the training time"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="neurons" type="text" class="form-control" required
-                               value="10" data-min="4" data-max="32" data-integer-only="true">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Learning rate</span>
-                        <i class="fas fa-question-circle"
-                           title="The step size when moving to the minimum of errors"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="learningRate" type="text" class="form-control" value="0.02"
-                               data-min=".01" data-max="1" required>
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="form-columns form-group row">
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Start error threshold</span>
+            <i class="fas fa-question-circle" title="Maximum error of the random initial state"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="startErrorThreshold" type="text" class="form-control" required
+                 value="0.8" data-min="0.01" data-max="1.0">
+            <div class="error-block"></div>
+          </div>
         </div>
-
-        <div class="form-columns form-group row">
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Start error threshold</span>
-                        <i class="fas fa-question-circle" title="Maximum error of the random initial state"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="startErrorThreshold" type="text" class="form-control" required
-                               value="0.8" data-min="0.01" data-max="1.0">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Stop error threshold</span>
-                        <i class="fas fa-question-circle"
-                           title="Maximum difference between iteration errors to complete training"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="stopErrorThreshold" type="text" class="form-control" required
-                               value="0.0002" data-min="0.0001" data-max="0.01">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Stop error threshold</span>
+            <i class="fas fa-question-circle"
+               title="Maximum difference between iteration errors to complete training"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="stopErrorThreshold" type="text" class="form-control" required
+                 value="0.0002" data-min="0.0001" data-max="0.01">
+            <div class="error-block"></div>
+          </div>
         </div>
-        <div class="form-columns form-group row">
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Min initial weight</span>
-                        <i class="fas fa-question-circle"
-                           title="Minimum initial weight of neuron connections"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="minInitialWeight" type="text" class="form-control" required
-                               value="-0.1" data-min="-0.9" data-max="0">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Max initial weight</span>
-                        <i class="fas fa-question-circle"
-                           title="Maximum initial weight of neuron connections"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="maxInitialWeight" type="text" class="form-control" required
-                               value="0.1" data-min="0" data-max="0.9">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-columns form-group row">
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Hidden layer bias</span>
-                        <i class="fas fa-question-circle" title="Shift of the result of the activation function"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="hiddenLayerBias" type="text" class="form-control" required
-                               value="0.45" data-min="-0.9" data-max="0.9">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-column col-lg-6">
-                <div class="form-attr form-group row required" data-handler="FormNumber">
-                    <label class="col-form-label col-lg-6">
-                        <span data-t="">Output layer bias</span>
-                        <i class="fas fa-question-circle" title="Shift of the result of the activation function"></i>
-                    </label>
-                    <div class="col-lg-6">
-                        <input name="outputLayerBias" type="text" class="form-control" required
-                               value="0.25" data-min="-0.9" data-max="0.9">
-                        <div class="error-block"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </fieldset>
-
-    <div class="mt-3 row">
-        <div class="col-lg-9 offset-lg-3">
-            <div class="d-flex justify-content-between">
-                <button class="mt-3 btn-success btn" type="button" data-command="train">
-                    <span data-t="">Start</span>
-                </button>
-                <button class="mt-3 btn-outline-secondary btn" type="button" data-command="reset">
-                    <span data-t="">Reset to defaults</span>
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <div class="progress-view" data-handler="ProgressView">
-        <div class="form-attr form-group row">
-            <label class="col-form-label col-lg-3">
-                <b data-t="">Training progress</b>
-            </label>
-            <div class="col-lg-9">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"></div>
-                </div>
-                <button class="m-auto btn-danger btn" type="button" data-command="stop">
-                    <i class="me-1 fas fa-sync-alt fa-spin"></i>
-                    <span data-t="">Stop training</span>
-                </button>
-            </div>
+    <div class="form-columns form-group row">
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Min initial weight</span>
+            <i class="fas fa-question-circle"
+               title="Minimum initial weight of neuron connections"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="minInitialWeight" type="text" class="form-control" required
+                 value="-0.1" data-min="-0.9" data-max="0">
+            <div class="error-block"></div>
+          </div>
         </div>
+      </div>
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Max initial weight</span>
+            <i class="fas fa-question-circle"
+               title="Maximum initial weight of neuron connections"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="maxInitialWeight" type="text" class="form-control" required
+                 value="0.1" data-min="0" data-max="0.9">
+            <div class="error-block"></div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="save-form form mt-3" data-handler="NetworkSaveForm">
-
-        <div class="form-error alert-danger alert"></div>
-
-        <div class="form-attr form-group row required" data-handler="FormNetworkName">
-            <label class="col-form-label col-lg-3" data-t="">Network name</label>
-            <div class="col-lg-9">
-                <input name="name" type="text" class="form-control" required>
-                <div class="hint-block"></div>
-                <div class="error-block"></div>
-            </div>
+    <div class="form-columns form-group row">
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Hidden layer bias</span>
+            <i class="fas fa-question-circle" title="Shift of the result of the activation function"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="hiddenLayerBias" type="text" class="form-control" required
+                 value="0.45" data-min="-0.9" data-max="0.9">
+            <div class="error-block"></div>
+          </div>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-9 offset-lg-3">
-                <div class="d-flex justify-content-between">
-                    <button class="mt-3 btn-success btn" type="button" data-command="saveLocally">
-                        <span data-t="">Save locally</span>
-                    </button>
-                    <% if (!isGuest) { %>
-                    <button class="mt-3 btn-outline-primary btn" type="button" data-command="saveRemotely">
-                        <span data-t="">Save remotely</span>
-                    </button>
-                    <% } %>
-                    <button class="mt-3 btn-danger btn" type="button" data-command="closeSave">
-                        <span data-t="">Close</span>
-                    </button>
-                </div>
-            </div>
+      </div>
+      <div class="form-column col-lg-6">
+        <div class="form-attr form-group row required" data-handler="FormNumber">
+          <label class="col-form-label col-lg-6">
+            <span data-t="">Output layer bias</span>
+            <i class="fas fa-question-circle" title="Shift of the result of the activation function"></i>
+          </label>
+          <div class="col-lg-6">
+            <input name="outputLayerBias" type="text" class="form-control" required
+                 value="0.25" data-min="-0.9" data-max="0.9">
+            <div class="error-block"></div>
+          </div>
         </div>
+      </div>
     </div>
+  </fieldset>
 
-    <div class="row">
-        <div class="offset-lg-3 col-lg-9">
-            <div class="progress-logs" data-handler="ProgressLog">
-                <template data-id="item">
-                    <div class="progress-log">{{message}}</div>
-                </template>
-            </div>
-        </div>
+  <div class="mt-3 row">
+    <div class="col-lg-9 offset-lg-3">
+      <div class="d-flex justify-content-between">
+        <button class="mt-3 btn-success btn" type="button" data-command="train">
+          <span data-t="">Start</span>
+        </button>
+        <button class="mt-3 btn-outline-secondary btn" type="button" data-command="reset">
+          <span data-t="">Reset to defaults</span>
+        </button>
+      </div>
     </div>
+  </div>
+
+  <div class="progress-view" data-handler="ProgressView">
+    <div class="form-attr form-group row">
+      <label class="col-form-label col-lg-3">
+        <b data-t="">Training progress</b>
+      </label>
+      <div class="col-lg-9">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success" role="progressbar"></div>
+        </div>
+        <button class="m-auto btn-danger btn" type="button" data-command="stop">
+          <i class="me-1 fas fa-sync-alt fa-spin"></i>
+          <span data-t="">Stop training</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-form form mt-3" data-handler="NetworkSaveForm">
+
+    <div class="form-error alert-danger alert"></div>
+
+    <div class="form-attr form-group row required" data-handler="FormNetworkName">
+      <label class="col-form-label col-lg-3" data-t="">Network name</label>
+      <div class="col-lg-9">
+        <input name="name" type="text" class="form-control" required>
+        <div class="hint-block"></div>
+        <div class="error-block"></div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-9 offset-lg-3">
+        <div class="d-flex justify-content-between">
+          <button class="mt-3 btn-success btn" type="button" data-command="saveLocally">
+            <span data-t="">Save locally</span>
+          </button>
+          <% if (!isGuest) { %>
+          <button class="mt-3 btn-outline-primary btn" type="button" data-command="saveRemotely">
+            <span data-t="">Save remotely</span>
+          </button>
+          <% } %>
+          <button class="mt-3 btn-danger btn" type="button" data-command="closeSave">
+            <span data-t="">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="offset-lg-3 col-lg-9">
+      <div class="progress-logs" data-handler="ProgressLog">
+        <template data-id="item">
+          <div class="progress-log">{{message}}</div>
+        </template>
+      </div>
+    </div>
+  </div>
 </div>

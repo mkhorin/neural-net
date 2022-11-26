@@ -1,14 +1,13 @@
 <%
 layout(_view.get('_layout/content'));
 %>
-
 <div class="front"
-     data-guest="<%- isGuest %>"
-     data-user="<%- _controller.user.getId() %>"
-     data-remote-networks="<%= JSON.stringify(remoteNetworks) %>">
+   data-guest="<%- isGuest %>"
+   data-user="<%- _controller.user.getId() %>"
+   data-remote-networks="<%= JSON.stringify(remoteNetworks) %>">
 
-    <%- include('./_main') %>
-    <%- include('./_recognition') %>
-    <%- include('./_training') %>
-    <%- include('./_testing') %>
+  <%- include('./_main') %>
+  <%- include('./_recognition') %>
+  <%- include('./_training') %>
+  <%- include('./_testing') %>
 </div>
