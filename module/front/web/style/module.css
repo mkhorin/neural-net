@@ -300,7 +300,7 @@ body {
 .recognition-output {
   line-height: 1.8rem;
   text-align: center;
-  color: #507090;
+  color: #204060;
   font-weight: var(--semi-bold);
   transition: filter 1s linear;
 }

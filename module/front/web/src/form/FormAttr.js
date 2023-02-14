@@ -14,8 +14,10 @@ Front.FormAttr = class FormAttr extends Front.Element {
     }
 
     validate () {
-        for (const config of this.getValidators()) {
-            if (!(new config.Class(config)).validate(this.getValue(), this)) {
+        const validators = this.getValidators();
+        for (const config of validators) {
+            const validator = new config.Class(config);
+            if (!validator.validate(this.getValue(), this)) {
                 break;
             }
         }

@@ -29,7 +29,8 @@ module.exports = class NeuralNetworkController extends Base {
 
     async actionRead () {
         const {id} = this.getQueryParams();
-        const model = await this.createModel().findById(id).one();
+        const query = this.createModel().findById(id);
+        const model = await query.one();
         if (!model) {
             throw new NotFound;
         }
@@ -43,7 +44,8 @@ module.exports = class NeuralNetworkController extends Base {
 
     async actionUpdate () {
         const {id} = this.getPostParams();
-        const model = await this.createModel().findById(id).select('name').one();
+        const query = this.createModel().findById(id).select('name');
+        const model = await query.one();
         if (!model) {
             throw new NotFound;
         }
@@ -52,7 +54,8 @@ module.exports = class NeuralNetworkController extends Base {
 
     async actionDelete () {
         const {id} = this.getPostParams();
-        const model = await this.createModel().findById(id).select('name').one();
+        const query = this.createModel().findById(id).select('name');
+        const model = await query.one();
         if (!model) {
             throw new NotFound;
         }
@@ -65,7 +68,8 @@ module.exports = class NeuralNetworkController extends Base {
         model.setSafeAttrs(network);
         if (!await model.save()) {
             const error = model.getFirstError();
-            return this.send(this.translate(error), 400);
+            const message = this.translate(error);
+            return this.send(message, 400);
         }
         this.send(model.getId());
     }

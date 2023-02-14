@@ -40,7 +40,9 @@ class Front {
     }
 
     static escapeHtml (value) {
-        return typeof value === 'string' ? value.replace(/</g, '&lt;').replace(/>/g, '&gt;') : value;
+        return typeof value === 'string'
+            ? value.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            : value;
     }
 
     static findHandler (Class, $elements) {
@@ -65,7 +67,8 @@ class Front {
 
     static createHandlers (front, container) {
         const handlers = [];
-        for (const element of container.querySelectorAll('[data-handler]')) {
+        const elements = container.querySelectorAll('[data-handler]');
+        for (const element of elements) {
             const name = $(element).data('handler');
             if (typeof name === 'string') {
                 const Class = this.getElementClass(name);
@@ -95,7 +98,6 @@ class Front {
         this.localNetworkStorage = new Front.LocalNetworkStorage(this);
         this.constructor.createHandlers(this, document);
         this.createTooltips();
-
         this.on('click', '.nav-link:not(.nav-frozen)', this.onTab.bind(this));
         this.on('click', '.form-set-toggle', this.onGroup.bind(this));
         this.on('click', '[data-action="main"]', this.onMain.bind(this));
@@ -167,7 +169,8 @@ class Front {
     }
 
     createTooltips () {
-        for (const label of this.$container.find('label [title]')) {
+        const labels = this.$container.find('label [title]');
+        for (const label of labels) {
             new bootstrap.Tooltip(label);
         }
     }

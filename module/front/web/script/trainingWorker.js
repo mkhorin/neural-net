@@ -31,19 +31,19 @@ class Front {
             if (error < minError) {
                 minError = error;
             }
-            postMessage({
-                log: `Initialization iteration: ${++iterations}. Error: ${error}. Min error: ${minError}`
-            });
+            let log = `Initialization iteration: ${++iterations}. Error: ${error}. Min error: ${minError}`;
+            postMessage({log});
         }
         iterations = 1;
         let previousError = null;
         while (true) {
             let error = this.iterateTraining(iterations);
-            postMessage({
-                log: `Training iteration: ${iterations}. Error: ${error}`
-            });
-            if (previousError !== null && previousError - error < this.stopErrorThreshold) {
-                break;
+            let log = `Training iteration: ${iterations}. Error: ${error}`;
+            postMessage({log});
+            if (previousError !== null) {
+                if (previousError - error < this.stopErrorThreshold) {
+                    break;
+                }
             }
             previousError = error;
             ++iterations;
@@ -59,13 +59,13 @@ class Front {
     iterateTraining (iterations = 0) {
         let counter = iterations * this.inputs.length;
         let error = 0;
-        for (let [value, data] of Front.Network.shuffle(this.inputs)) {
+        let inputs = Front.Network.shuffle(this.inputs);
+        for (let [value, data] of inputs) {
             this.network.processInputs(data);
             error += this.network.processTrainingError(value);
             if (++counter % this.progressStep === 0) {
-                postMessage({
-                    progress: this.calculateProgress(counter)
-                });
+                const progress = this.calculateProgress(counter);
+                postMessage({progress});
             }
         }
         return error / this.inputs.length;

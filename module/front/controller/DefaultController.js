@@ -15,7 +15,8 @@ module.exports = class DefaultController extends Base {
 
     async getRemoteNetworkItems () {
         const model = this.spawn('model/NeuralNetwork');
-        const items = await model.find().select('name').raw().all();
+        const query = model.find().select('name').raw();
+        const items = await query.all();
         if (items.length) {
             items[items.length - 1].selected = true;
         }
