@@ -1,15 +1,12 @@
 {
   "name": "neural-net",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Train, test and operate neural networks to recognize handwritten digits",
   "author": {
     "name": "Maxim Khorin",
     "email": "maksimovichu@gmail.com"
   },
   "license": "MIT",
-  "engines": {
-    "node": ">=16.20.1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mkhorin/neural-net.git"

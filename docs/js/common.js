@@ -48,7 +48,7 @@ jQuery('.navbar-target').append(`<div class="container">
         label: 'Recognition digits',
         ru: 'Распознавание цифр'
     }];
-    const lang = document.documentElement.lang;
+    const {lang} = document.documentElement;
     const result = [];
     for (const item of items) {
         if (item.header) {

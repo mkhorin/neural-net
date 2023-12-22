@@ -7,7 +7,7 @@ const {workerData, parentPort} = require('worker_threads');
 const fs = require('fs');
 const sharp = require('sharp');
 const AdmZip = require('adm-zip');
-const file = workerData.file;
+const {file} = workerData;
 
 console.log(`Unzipping archive: ${file}`);
 

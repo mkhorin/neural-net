@@ -95,11 +95,12 @@ Front.Drawing = class Drawing extends Front.Element {
     exportData () {
         const rect = this.getCroppingRect(this.context, this.canvas.width, this.canvas.height);
         if (rect) {
+            const {height, width} = this.target;
             const sourceRect = this.convertToSquare(rect);
             const context = this.targetContext;
-            context.fillRect(0, 0, this.target.width, this.target.height);
-            context.drawImage(this.canvas, ...sourceRect, 2, 2, this.target.width - 4, this.target.height - 4);
-            const data = context.getImageData(0, 0, this.target.width, this.target.height);
+            context.fillRect(0, 0, width, height);
+            context.drawImage(this.canvas, ...sourceRect, 2, 2, width - 4, height - 4);
+            const data = context.getImageData(0, 0, width, height);
             this.invert(data);
             context.putImageData(data, 0, 0);
             return this.getGrayscale(data);
@@ -107,9 +108,8 @@ Front.Drawing = class Drawing extends Front.Element {
     }
 
     getCroppingRect (context, width, height) {
-        let data = context.getImageData(0, 0, width, height).data;
-        let x1 = width, y1 = height;
-        let x2 = 0, y2 = 0, i = 0;
+        const {data} = context.getImageData(0, 0, width, height);
+        let x1 = width, y1 = height, x2 = 0, y2 = 0, i = 0;
         for (let y = 0; y < height; ++y) {
             for (let x = 0; x < width; ++x) {
                 if (data[i] !== 255 || data[i] !== data[i + 1] || data[i] !== data[i + 2]) {
@@ -144,8 +144,7 @@ Front.Drawing = class Drawing extends Front.Element {
         return [x, y, w, h];
     }
 
-    invert (imageData) {
-        const data = imageData.data;
+    invert ({data}) {
         for (let i = 0; i < data.length; i += 4) {
             data[i] = 255 - data[i]; // red
             data[i + 1] = 255 - data[i + 1]; // green
@@ -153,9 +152,8 @@ Front.Drawing = class Drawing extends Front.Element {
         }
     }
 
-    getGrayscale (imageData) {
+    getGrayscale ({data}) {
         const result = [];
-        const data = imageData.data;
         for (let i = 0; i < data.length; i += 4) {
             result.push(Math.round(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114));
         }

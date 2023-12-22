@@ -72,8 +72,8 @@ Front.FormDate = class FormDate extends Front.FormAttr {
     }
 
     onChangeDate (event) {
-        const date = event.date;
-        const format = this.picker.options().format;
+        const {date} = event;
+        const {format} = this.picker.options();
         const value = date ? moment(moment(date).format(format), format) : '';
         this.$value.val(value ? Jam.DateHelper.stringify(value, this.utc) : '');
         if (!date) {
